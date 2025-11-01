@@ -140,27 +140,33 @@ function loadVideoEmbed(cardElement, videoUrl) {
   }
 }
 
-function loadViaJSONP(url) {
+function loadViaJSONP(url, timeoutMs = 8000) {
   return new Promise((resolve, reject) => {
-    // Попытка через XHR
-    try {
-      const xhr = new XMLHttpRequest();
-      xhr.open('GET', url, true);
-      xhr.setRequestHeader('Accept', 'application/json, text/plain, */*');
-      xhr.onload = function() {
-        if (xhr.status >= 200 && xhr.status < 300) {
-          try { resolve(JSON.parse(xhr.responseText)); }
-          catch (e) {
-            const urls = Array.from(new Set((xhr.responseText.match(/https?:\/\/(?:www\.)?tiktok\.com\/[^\s"'><)]+/g) || [])));
-            resolve(urls);
-          }
-        } else reject(new Error('HTTP ' + xhr.status));
-      };
-      xhr.onerror = function() { reject(new Error('XHR error')); };
-      xhr.send();
-    } catch (e) {
-      reject(e);
-    }
+    const cbName = '__tiktok_cb_' + Date.now() + '_' + Math.floor(Math.random() * 10000);
+    const script = document.createElement('script');
+    const sep = url.includes('?') ? '&' : '?';
+    script.src = `${url}${sep}callback=${cbName}`;
+    let timedOut = false;
+    const cleanup = () => {
+      if (script.parentNode) script.parentNode.removeChild(script);
+      try { delete window[cbName]; } catch (e) { window[cbName] = undefined; }
+      clearTimeout(timer);
+    };
+    window[cbName] = function(data) {
+      if (timedOut) return;
+      cleanup();
+      resolve(data);
+    };
+    script.onerror = function(e) {
+      cleanup();
+      reject(new Error('JSONP script error'));
+    };
+    const timer = setTimeout(() => {
+      timedOut = true;
+      cleanup();
+      reject(new Error('JSONP timeout'));
+    }, timeoutMs);
+    document.head.appendChild(script);
   });
 }
 
@@ -206,70 +212,4 @@ async function loadTikTokVideos() {
     if (Array.isArray(data) && data.length > 0 && typeof data[0] === 'object' && !Array.isArray(data[0])) {
       const mapped = data.map(it => {
         if (!it) return null;
-        if (typeof it === 'string') return it;
-        return it.url || it.link || it['Ссылка на TikTok'] || it.tiktok || null;
-      }).filter(Boolean);
-      if (mapped.length) data = mapped;
-    }
-
-    // Если таблица (массив массивов)
-    if (Array.isArray(data) && Array.isArray(data[0])) {
-      data = data.map(row => {
-        if (typeof row[0] === 'string') return row[0];
-        // ищем строку с tiktok ссылкой
-        for (const cell of row) {
-          if (typeof cell === 'string' && cell.includes('tiktok.com')) return cell;
-        }
-        return null;
-      }).filter(Boolean);
-    }
-
-    // Если ответ — объект gviz (Google Spreadsheets JSON)
-    if (data && typeof data === 'object' && data.table && Array.isArray(data.table.rows)) {
-      data = data.table.rows.map(r => {
-        const cells = r.c || [];
-        for (const c of cells) {
-          if (c && typeof c.v === 'string' && c.v.includes('tiktok.com')) return c.v;
-        }
-        return null;
-      }).filter(Boolean);
-    }
-
-    if (!Array.isArray(data) || data.length === 0) {
-      container.innerHTML = `<div style="padding:12px;border:1px solid #f0ad4e;background:#fff3cd;border-radius:4px;color:#8a6d3b">Видео не найдены. Проверьте ответ API и CORS (см. консоль).</div>`;
-      console.log('[tiktok] data', data);
-      return;
-    }
-
-    container.innerHTML = '';
-    const cards = await Promise.all(data.map(async (entry, idx) => {
-      let link = null;
-      if (typeof entry === 'string') link = entry;
-      else if (entry && typeof entry === 'object') link = entry.url || entry.link || entry['Ссылка на TikTok'] || entry.tiktok || null;
-      if (!link && Array.isArray(entry)) link = entry.find(i => typeof i === 'string' && i.includes('tiktok.com')) || entry[0];
-      if (!link || !link.includes('tiktok.com')) {
-        console.warn('[tiktok] skip entry', idx, entry);
-        return null;
-      }
-      link = link.trim();
-      const oEmbed = await fetchTikTokOEmbed(link);
-      return createVideoCard(link, oEmbed);
-    }));
-
-    cards.forEach(c => { if (c) container.appendChild(c); });
-
-  } catch (err) {
-    console.error('[tiktok] load error', err);
-    const isCors = err.message && (err.message.includes('fetch') || err.message.includes('Failed to fetch') || err instanceof TypeError);
-    container.innerHTML = isCors
-      ? `<div style="color:#8a6d3b;padding:16px;border:1px solid #ffc107;background:#fff3cd;border-radius:6px">
-           <strong>Проблема загрузки данных (возможно CORS).</strong><br>
-           Проверьте, что Google Apps Script развернут как веб-приложение с доступом «Все, включая анонимных пользователей» и что он возвращает JSON.<br>
-           Как временное решение для локальной отладки включите DEV_MODE в tiktok-videos.js.
-         </div>`
-      : `<div style="color:red">Ошибка: ${escapeHtml(err.message || String(err))}</div>`;
-  }
-}
-
-if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', loadTikTokVideos);
-else loadTikTokVideos();
+        if
