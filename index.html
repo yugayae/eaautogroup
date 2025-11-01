@@ -15,6 +15,8 @@
                         <li><a href="index.html">Главная</a></li>
                         <li><a href="about.html">О компании</a></li>
                         <li><a href="catalog.html">Каталог</a></li>
+                        <li><a href="calculator.html">Калькулятор</a></li>
+                        <li><a href="videos.html">Видео</a></li>
                         <li><a href="contacts.html">Контакты</a></li>
                     </ul>
                 </nav>
@@ -24,21 +26,21 @@
     </header>
 
     <section class="hero">
-        <h1>Мы компания которая занимается экспортом во все страны!</h1>
-        <p>Прямые поставки, проверенные авто, помощь в растаможке</p>
-        <a href="/catalog.html" class="btn">Смотреть каталог</a>
+        <h1 class="animate-on-scroll" data-delay="0">Мы компания которая занимается экспортом во все страны!</h1>
+        <p class="animate-on-scroll" data-delay="200">Прямые поставки, проверенные авто, помощь в растаможке</p>
+        <a href="/catalog.html" class="btn animate-on-scroll" data-delay="400">Смотреть каталог</a>
     </section>
 
     <section class="advantages">
-        <div class="advantage">
+        <div class="advantage animate-on-scroll" data-delay="0">
             <h3>🚗 Большой выбор</h3>
             <p>Hyundai, Kia, Genesis, SsangYong и другие</p>
         </div>
-        <div class="advantage">
+        <div class="advantage animate-on-scroll" data-delay="200">
             <h3>⚡ Быстрая доставка</h3>
             <p>От 2 недель до вашего города</p>
         </div>
-        <div class="advantage">
+        <div class="advantage animate-on-scroll" data-delay="400">
             <h3>🔒 Гарантия</h3>
             <p>Проверка перед отправкой</p>
         </div>
@@ -48,6 +50,21 @@
         <p>© 2023 Eaautogroup. Все права защищены.</p>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- Подключение JavaScript файлов -->
+    <!-- 1. API для валют (должен быть первым) -->
+    <script src="JS/api/currency-api.js"></script>
+    
+    <!-- 2. Калькуляторы (все страны) -->
+    <script src="JS/calculators/calc-russia.js"></script>
+    <script src="JS/calculators/calc-belarus.js"></script>
+    <script src="JS/calculators/calc-ukraine.js"></script>
+    <script src="JS/calculators/calc-kazakhstan.js"></script>
+    <script src="JS/calculators/calc-kyrgyzstan.js"></script>
+    
+    <!-- 3. Основной функционал -->
+    <script src="JS/main.js"></script>
+    
+    <!-- 4. Анимации (последний, чтобы не конфликтовать) -->
+    <script src="JS/animations.js"></script>
 </body>
 </html>

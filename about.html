@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eaautogroupe – Авто из Южной Кореи</title>
+    <title>Eaautogroup – Авто из Южной Кореи</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -15,6 +15,8 @@
                         <li><a href="index.html">Главная</a></li>
                         <li><a href="about.html">О компании</a></li>
                         <li><a href="catalog.html">Каталог</a></li>
+                        <li><a href="calculator.html">Калькулятор</a></li>
+                        <li><a href="videos.html">Видео</a></li>
                         <li><a href="contacts.html">Контакты</a></li>
                     </ul>
                 </nav>
@@ -25,13 +27,13 @@
 
     <section class="about-section">
         <div class="container">
-            <div class="about-header">
+            <div class="about-header animate-on-scroll" data-delay="0">
                 <h1>О компании Eaautogroup</h1>
                 <p>Молодая, но динамично развивающаяся компания - мы начали работу в 2023 году и уже успели зарекомендовать себя как надежного партнера</p>
             </div>
             
             <div class="about-content">
-                <div class="about-card">
+                <div class="about-card animate-on-scroll" data-delay="200">
                     <h2>Наши преимущества</h2>
                     <ul>
                         <li>Собственный офис в Южной Корее</li>
@@ -45,7 +47,7 @@
                     </div>
                 </div>
                 
-                <div class="about-card">
+                <div class="about-card animate-on-scroll" data-delay="400">
                     <h2>Уникальное предложение</h2>
                     <p>Мы работаем со всеми площадками Южной Кореи:</p>
                     <ul>
@@ -63,7 +65,7 @@
                     </ul>
                 </div>
                 
-                <div class="about-card">
+                <div class="about-card animate-on-scroll" data-delay="600">
                     <h2>Прозрачное ценообразование</h2>
                     <table class="price-table">
                         <tr>
@@ -94,5 +96,22 @@
             </div>
         </div>
     </section>
+
+    <!-- Подключение JavaScript файлов -->
+    <!-- 1. API для валют (должен быть первым) -->
+    <script src="JS/api/currency-api.js"></script>
+    
+    <!-- 2. Калькуляторы (все страны) -->
+    <script src="JS/calculators/calc-russia.js"></script>
+    <script src="JS/calculators/calc-belarus.js"></script>
+    <script src="JS/calculators/calc-ukraine.js"></script>
+    <script src="JS/calculators/calc-kazakhstan.js"></script>
+    <script src="JS/calculators/calc-kyrgyzstan.js"></script>
+    
+    <!-- 3. Основной функционал -->
+    <script src="JS/main.js"></script>
+    
+    <!-- 4. Анимации (последний, чтобы не конфликтовать) -->
+    <script src="JS/animations.js"></script>
 </body>
 </html>

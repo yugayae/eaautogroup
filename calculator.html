@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Калькулятор растаможки – Eaautogroup</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="nav-logo-container">
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="about.html">О компании</a></li>
+                        <li><a href="catalog.html">Каталог</a></li>
+                        <li><a href="calculator.html">Калькулятор</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
+                    </ul>
+                </nav>
+                <img src="images/logo.png" alt="Eaautogroup Logo" class="logo">
+            </div>
+        </div>
+    </header>
+
+    <section class="calculator-section">
+        <div class="container">
+            <div class="calculator-header animate-on-scroll" data-delay="0">
+                <h1>Калькулятор растаможки авто из Кореи</h1>
+                <p>Рассчитайте стоимость растаможки автомобиля из Южной Кореи в вашей стране</p>
+            </div>
+            
+            <!-- Калькулятор -->
+            <div class="calculator animate-on-scroll" data-delay="200">
+                <form id="customs-calc-form">
+                    <div class="form-group">
+                        <label for="calc-country">Страна ввоза:</label>
+                        <select id="calc-country" required>
+                            <option value="">-- Выберите страну --</option>
+                            <option value="russia">Россия</option>
+                            <option value="ukraine">Украина</option>
+                            <option value="belarus">Беларусь</option>
+                            <option value="kazakhstan">Казахстан</option>
+                            <option value="kyrgyzstan">Киргизия</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="calc-car-year">Год выпуска автомобиля:</label>
+                        <input type="number" id="calc-car-year" min="2015" max="2025" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="calc-engine-type">Тип двигателя:</label>
+                        <select id="calc-engine-type" required>
+                            <option value="">-- Выберите тип --</option>
+                            <option value="petrol">Бензин</option>
+                            <option value="diesel">Дизель</option>
+                            <option value="hybrid">Гибрид</option>
+                            <option value="electric">Электрокар</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="calc-engine-volume">Объём двигателя (см³):</label>
+                        <input type="number" id="calc-engine-volume" min="800" max="8000" step="100" required>
+                    </div>
+
+                    <div id="battery-field" style="display:none;">
+                        <div class="form-group">
+                            <label for="battery-capacity">Ёмкость батареи (кВт·ч):</label>
+                            <input type="number" id="battery-capacity" min="10" max="200" step="1">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="calc-car-price">Стоимость авто (USD):</label>
+                        <input type="number" id="calc-car-price" min="1000" step="100" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="electric-checkbox">
+                            Электромобиль
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn">Рассчитать</button>
+                </form>
+
+                <div id="customs-result" class="result" style="display:none;">
+                    <h3>Детализация расчета для <span id="result-country"></span>:</h3>
+                    
+                    <table>
+                        <tr>
+                            <td><b>Стоимость авто:</b></td>
+                            <td id="car-price-result">0 USD</td>
+                        </tr>
+                        <tr>
+                            <td><b>Таможенная пошлина:</b></td>
+                            <td id="customs-duty">0 USD</td>
+                        </tr>
+                        <tr id="excise-row" style="display:none;">
+                            <td><b>Акцизный сбор:</b></td>
+                            <td id="excise-fee">0 USD</td>
+                        </tr>
+                        <tr>
+                            <td><b>НДС:</b></td>
+                            <td id="vat">0 USD</td>
+                        </tr>
+                        <tr id="recycling-row" style="display:none;">
+                            <td><b>Утилизационный сбор:</b></td>
+                            <td id="recycling-fee">0 USD</td>
+                        </tr>
+                        <tr class="total">
+                            <td><b>Общая сумма платежей:</b></td>
+                            <td id="total-fees">0 USD</td>
+                        </tr>
+                        <tr class="total">
+                            <td><b>Итого (USD):</b></td>
+                            <td id="total-usd">0 USD</td>
+                        </tr>
+                        <tr>
+                            <td><b>Итого (EUR):</b></td>
+                            <td id="total-eur">0 EUR</td>
+                        </tr>
+                        <tr>
+                            <td><b>Итого (местная валюта):</b></td>
+                            <td id="total-local">0</td>
+                        </tr>
+                    </table>
+                    
+                    <div class="details">
+                        <h4>Детали расчета:</h4>
+                        <pre id="calculation-details"></pre>
+                    </div>
+                    
+                    <p class="disclaimer">
+                        * Расчет выполнен согласно действующему законодательству на 2024 год
+                        <br>** Для точного расчета обратитесь к специалисту
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2023 Eaautogroup. Все права защищены.</p>
+    </footer>
+
+    <!-- Подключение JavaScript файлов -->
+    <!-- 1. API для валют (должен быть первым) -->
+    <script src="JS/api/currency-api.js"></script>
+    
+    <!-- 2. Калькуляторы (все страны) -->
+    <script src="JS/calculators/calc-russia.js"></script>
+    <script src="JS/calculators/calc-belarus.js"></script>
+    <script src="JS/calculators/calc-ukraine.js"></script>
+    <script src="JS/calculators/calc-kazakhstan.js"></script>
+    <script src="JS/calculators/calc-kyrgyzstan.js"></script>
+    
+    <!-- 3. Основной функционал -->
+    <script src="JS/main.js"></script>
+    
+    <!-- 4. Анимации (последний, чтобы не конфликтовать) -->
+    <script src="JS/animations.js"></script>
+</body>
+</html>
+

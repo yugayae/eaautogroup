@@ -10,6 +10,282 @@ body {
   background-color: #f9f9f9;
   color: #333;
   line-height: 1.6;
+  overflow-x: hidden;
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* === Плавные переходы между страницами === */
+.page-transition {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.4s ease-in-out;
+}
+
+.page-transition.loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* === Анимация загрузки страницы === */
+.page-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #2c3e50;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  transition: opacity 0.5s ease-out;
+}
+
+.page-loader.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loader-spinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top: 3px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* === Анимации === */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Классы для анимаций */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.animate-on-scroll.animated {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.animate-fade-in {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-slide-down {
+  animation: slideInDown 0.6s ease-out forwards;
+}
+
+.animate-pulse {
+  animation: pulse 2s infinite;
+}
+
+.animate-bounce {
+  animation: bounce 1s infinite;
+}
+
+/* === Ripple эффект для кнопок === */
+.btn, .cta-button, .submit-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(0);
+  animation: ripple-animation 0.6s linear;
+  pointer-events: none;
+}
+
+@keyframes ripple-animation {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* === Улучшенные hover эффекты === */
+.about-card, .advantage {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform, box-shadow;
+}
+
+.about-card:hover, .advantage:hover {
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+}
+
+/* Контактные карточки без анимации имен */
+.contact-card {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform, box-shadow;
+}
+
+.contact-card:hover {
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+}
+
+.contact-card h3 {
+  transition: none; /* Отключаем анимацию имен */
+}
+
+/* === Анимации для навигации === */
+nav a {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px;
+  left: 50%;
+  background-color: #3498db;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+/* === Анимации для иконок === */
+h3 {
+  transition: transform 0.3s ease;
+  display: inline-block;
+}
+
+/* === Счетчики === */
+.counter {
+  font-weight: bold;
+  color: #3498db;
+  font-size: 2rem;
+}
+
+/* === Стили для новых страниц === */
+.calculator-section {
+  padding: 60px 0;
+  background: #f9f9f9;
+}
+
+.calculator-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.calculator-header h1 {
+  font-size: 2.5rem;
+  color: #2c3e50;
+  margin-bottom: 15px;
+}
+
+.calculator-header p {
+  font-size: 1.2rem;
+  color: #7f8c8d;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.video-reviews {
+  padding: 60px 0;
+  background: #f9f9f9;
+}
+
+.video-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.video-header h1 {
+  font-size: 2.5rem;
+  color: #2c3e50;
+  margin-bottom: 15px;
+}
+
+.video-header p {
+  font-size: 1.2rem;
+  color: #7f8c8d;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 /* === Хедер и навигация === */
@@ -25,6 +301,7 @@ header {
   position: sticky;
   top: 0;
   z-index: 100;
+  animation: slideInDown 0.8s ease-out;
 }
 
 .header-container {
@@ -518,10 +795,121 @@ footer {
   justify-content: center;
 }
 
-.video {
+/* Стили для карточек видео TikTok */
+.video-card {
   background: #fff;
   border-radius: 12px;
-  padding: 12px;
-  width: 300px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  padding: 0;
+  width: 325px;
+  max-width: 100%;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+
+.video-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+.video-preview {
+  position: relative;
+  width: 100%;
+  padding-top: 100%; /* Квадратное соотношение сторон для TikTok */
+  background: #000;
+  overflow: hidden;
+}
+
+.preview-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.video-card:hover .preview-image {
+  transform: scale(1.05);
+}
+
+.play-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.video-card:hover .play-overlay {
+  opacity: 1;
+}
+
+.video-info {
+  padding: 16px;
+}
+
+.video-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0 0 8px 0;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.video-author {
+  font-size: 12px;
+  color: #7f8c8d;
+  margin: 0;
+}
+
+.video-embed-container {
+  width: 100%;
+  min-height: 400px;
+  position: relative;
+  transition: opacity 0.3s ease;
+}
+
+.video-embed-container[style*="display: none"] {
+  opacity: 0;
+}
+
+.video-embed-container blockquote.tiktok-embed {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+  .video-card {
+    width: 100%;
+    max-width: 350px;
+  }
+  
+  .video-container {
+    gap: 15px;
+    padding: 0 10px;
+  }
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+.checkbox-group label {
+  font-weight: normal;
 }

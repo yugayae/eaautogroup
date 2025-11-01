@@ -15,6 +15,8 @@
                         <li><a href="index.html">Главная</a></li>
                         <li><a href="about.html">О компании</a></li>
                         <li><a href="catalog.html">Каталог</a></li>
+                        <li><a href="calculator.html">Калькулятор</a></li>
+                        <li><a href="videos.html">Видео</a></li>
                         <li><a href="contacts.html">Контакты</a></li>
                     </ul>
                 </nav>
@@ -22,189 +24,133 @@
             </div>
         </div>
     </header>
-    <div class="car-request-form">
-    <h2>Подбор автомобиля по параметрам</h2>
-    <form id="carSearchForm">
-        <div class="form-row">
-            <div class="form-group">
-                <label for="brand">Марка</label>
-                <select id="brand" required>
-                    <option value="">Выберите марку</option>
-                    <option value="Hyundai">Hyundai</option>
-                    <option value="Kia">Kia</option>
-                    <option value="Genesis">Genesis</option>
-                    <option value="SsangYong">SsangYong</option>
-                </select>
-            </div>
-            
-            <div class="form-group">
-                <label for="model">Модель</label>
-                <input type="text" id="model" placeholder="Например: Tucson">
-            </div>
-        </div>
+    <div class="car-request-form animate-on-scroll" data-delay="0">
+  <h2>Подбор автомобиля по параметрам</h2>
+  <form id="carSearchForm">
+    <div class="form-row">
+      <div class="form-group">
+        <label for="brand">Марка</label>
+        <select id="brand" required>
+          <option value="">Выберите марку</option>
+          <option value="Hyundai">Hyundai</option>
+          <option value="Kia">Kia</option>
+          <option value="Genesis">Genesis</option>
+          <option value="SsangYong">SsangYong</option>
+          <option value="Chevrolet">Chevrolet</option>
+          <option value="Renault">Renault Samsung</option>
+          <option value="BMW">BMW</option>
+          <option value="Audi">Audi</option>
+          <option value="Lexus">Lexus</option>
+          <option value="LandRover">Land Rover</option>
+          <option value="Lincoln">Lincoln</option>
+          <option value="Ford">Ford</option>
+          <option value="Jeep">Jeep</option>
+          <option value="Mini">MINI</option>
+          <option value="Jaguar">Jaguar</option>
+          <option value="Cadillac">Cadillac</option>
+          <option value="Volvo">Volvo</option>
+          <option value="Toyota">Toyota</option>
+          <option value="Nissan">Nissan</option>
+          <option value="Honda">Honda</option>
+          <option value="Peugeot">Peugeot</option>
+          <option value="AstonMartin">Aston Martin</option> 
+          <option value="Bentley">Bentley</option>
+          <option value="Chrysler">Chrysler</option>
+          <option value="Dodge">Dodge</option>
+          <option value="Ferrari">Ferrari</option>
+          <option value="GMC">GMC</option>
+          <option value="Hummer">Hummer</option>
+          <option value="Infiniti">Infiniti</option>
+          <option value="Lamborghini">Lamborghini</option>
+          <option value="Maserati">Maserati</option>
+          <option value="McLaren">McLaren</option>
+          <option value="Mercedes-Benz">Mercedes-Benz</option>
+          <option value="Porsche">Porsche</option>
+          <option value="Rolls-Royce">Rolls-Royce</option>
+          <option value="Tesla">Tesla</option>
+          <option value="Volkswagen">Volkswagen</option>
+        </select>
+      </div>
 
-        <div class="form-row">
-            <div class="form-group">
-                <label for="year">Год выпуска</label>
-                <select id="year">
-                    <option value="">Любой</option>
-                    <!-- Годы будут добавлены через JS -->
-                </select>
-            </div>
-            
-            <div class="form-group">
-                <label for="mileage">Пробег (км)</label>
-                <select id="mileage">
-                    <option value="">Не важно</option>
-                    <option value="30000">До 30,000 км</option>
-                    <option value="50000">До 50,000 км</option>
-                    <option value="100000">До 100,000 км</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="form-row">
-            <div class="form-group">
-                <label for="price-min">Цена от ($)</label>
-                <input type="number" id="price-min" placeholder="10000">
-            </div>
-            
-            <div class="form-group">
-                <label for="price-max">Цена до ($)</label>
-                <input type="number" id="price-max" placeholder="30000">
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="client-phone">Ваш WhatsApp/Telegram</label>
-            <input type="text" id="client-phone" required placeholder="+821012345678">
-        </div>
-
-        <button type="submit" class="submit-btn">
-            <i class="tg-icon"></i> Отправить запрос менеджеру
-        </button>
-    </form>
-</div>
-
-<div class="calculator">
-        <h2>Калькулятор растаможки авто из Кореи</h2>
-        
-        <form id="calculator-form">
-            <div class="form-group">
-                <label for="country">Страна ввоза:</label>
-                <select id="country" required>
-                    <option value="">-- Выберите страну --</option>
-                    <option value="russia">Россия</option>
-                    <option value="ukraine">Украина</option>
-                    <option value="belarus">Беларусь</option>
-                    <option value="kazakhstan">Казахстан</option>
-                    <option value="kyrgyzstan">Киргизия</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label>Год выпуска автомобиля:</label>
-                <div class="slider-container">
-                    <input type="range" id="car-year" min="2000" max="2025" value="2020" class="slider">
-                    <div class="value-container">
-                        <span class="min-max">2000</span>
-                        <span class="value-display" id="year-display">2020</span>
-                        <span class="min-max">2025</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="engine-type">Тип двигателя:</label>
-                <select id="engine-type" required>
-                    <option value="">-- Выберите тип --</option>
-                    <option value="petrol">Бензин</option>
-                    <option value="diesel">Дизель</option>
-                    <option value="hybrid">Гибрид</option>
-                    <option value="electric">Электрокар</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label>Объём двигателя (см³):</label>
-                <div class="slider-container">
-                    <input type="range" id="engine-volume" min="800" max="5000" step="100" value="2000" class="slider">
-                    <div class="value-container">
-                        <span class="min-max">800 см³</span>
-                        <span class="value-display" id="volume-display">2000 см³</span>
-                        <span class="min-max">5000 см³</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>Стоимость авто (USD):</label>
-                <div class="slider-container">
-                    <input type="range" id="car-price" min="5000" max="50000" step="1000" value="15000" class="slider">
-                    <div class="value-container">
-                        <span class="min-max">5000 $</span>
-                        <span class="value-display" id="price-display">15000 $</span>
-                        <span class="min-max">50000 $</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="delivery-method">Способ доставки:</label>
-                <select id="delivery-method" required>
-                    <option value="">-- Выберите способ --</option>
-                    <option value="container">Контейнер</option>
-                    <option value="ro-ro">Ролкер (Ro-Ro)</option>
-                </select>
-            </div>
-
-            <button type="submit" class="btn">Рассчитать</button>
-        </form>
-
-        <div id="result" class="result">
-            <div class="result-item">
-                <span>Стоимость авто:</span>
-                <span id="car-price-result">0 USD</span>
-            </div>
-            <div class="result-item">
-                <span>Доставка:</span>
-                <span id="delivery-cost">0 USD</span>
-            </div>
-            <div class="result-item">
-                <span>Таможенная пошлина:</span>
-                <span id="customs-duty">0 USD</span>
-            </div>
-            <div class="result-item">
-                <span>НДС:</span>
-                <span id="vat">0 USD</span>
-            </div>
-            <div class="result-item">
-                <span>Доп. сборы:</span>
-                <span id="additional-fees">0 USD</span>
-            </div>
-            <div class="result-item result-total">
-                <span>Итого к оплате:</span>
-                <span id="total-cost">0 USD</span>
-            </div>
-        </div>
-
-        <button id="contact-manager" class="btn btn-secondary">Уточнить у менеджера</button>
-
-        <div class="disclaimer">
-            *Цены носят ознакомительный характер. Для точного расчёта свяжитесь с менеджером.<br>
-            Актуально на 2025 год.
-        </div>
+      <div class="form-group">
+        <label for="model">Модель</label>
+        <select id="model" required>
+          <option value="">Сначала выберите марку</option>
+        </select>
+      </div>
     </div>
 
-<section class="video-reviews">
-  <h2>Видеообзоры автомобилей из Кореи</h2>
-  <div class="video-container" id="video-list">Загрузка видео...</div>
-</section>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="year">Год выпуска</label>
+        <select id="year"></select>
+      </div>
+
+      <div class="form-group">
+        <label for="mileage">Пробег (км)</label>
+        <select id="mileage">
+          <option value="">Не важно</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="price-min">Цена от ($)</label>
+        <input type="number" id="price-min" placeholder="10000">
+      </div>
+
+      <div class="form-group">
+        <label for="price-max">Цена до ($)</label>
+        <input type="number" id="price-max" placeholder="30000">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="client-phone">Ваш WhatsApp/Telegram</label>
+      <input type="text" id="client-phone" required placeholder="+821012345678">
+    </div>
+
+    <div class="form-row">
+  <div class="form-group">
+    <label for="trim">Комплектация (опционально)</label>
+    <input type="text" id="trim" placeholder="Например: Prestige, GT Line">
+  </div>
+</div>
+
+<div class="form-row">
+  <div class="form-group checkbox-group">
+    <label>
+      <input type="checkbox" id="allow-paint">
+      Допустим окрас
+    </label>
+  </div>
+
+  <div class="form-group checkbox-group">
+    <label>
+      <input type="checkbox" id="allow-replacement">
+      Допустима замена
+    </label>
+  </div>
+</div>
+
+    <button type="submit" class="submit-btn">
+      Отправить запрос менеджеру
+    </button>
+  </form>
+</div>
+
+
 
 <footer>
         <p>© 2023 Eaautogroup. Все права защищены.</p>
     </footer>
 
-    <script src="script.js"></script>
-</body>
+    <!-- Подключение JavaScript файлов -->
+    <!-- 1. Дополнительные функции -->
+    <script src="JS/features/car-selection.js"></script>
+    
+    <!-- 2. Анимации -->
+    <script src="JS/animations.js"></script>
+    </body>
 </html>
