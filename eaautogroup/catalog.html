@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eaautogroup – Авто из Южной Кореи</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="nav-logo-container">
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="about.html">О компании</a></li>
+                        <li><a href="catalog.html">Каталог</a></li>
+                        <li><a href="calculator.html">Калькулятор</a></li>
+                        <li><a href="videos.html">Видео</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
+                    </ul>
+                </nav>
+                <img src="images/logo.png" alt="Eaautogroup Logo" class="logo">
+            </div>
+        </div>
+    </header>
+    <div class="car-request-form animate-on-scroll" data-delay="0">
+  <h2>Подбор автомобиля по параметрам</h2>
+  <form id="carSearchForm">
+    <div class="form-row">
+      <div class="form-group">
+        <label for="brand">Марка</label>
+        <select id="brand" required>
+          <option value="">Выберите марку</option>
+          <option value="Hyundai">Hyundai</option>
+          <option value="Kia">Kia</option>
+          <option value="Genesis">Genesis</option>
+          <option value="SsangYong">SsangYong</option>
+          <option value="Chevrolet">Chevrolet</option>
+          <option value="Renault">Renault Samsung</option>
+          <option value="BMW">BMW</option>
+          <option value="Audi">Audi</option>
+          <option value="Lexus">Lexus</option>
+          <option value="LandRover">Land Rover</option>
+          <option value="Lincoln">Lincoln</option>
+          <option value="Ford">Ford</option>
+          <option value="Jeep">Jeep</option>
+          <option value="Mini">MINI</option>
+          <option value="Jaguar">Jaguar</option>
+          <option value="Cadillac">Cadillac</option>
+          <option value="Volvo">Volvo</option>
+          <option value="Toyota">Toyota</option>
+          <option value="Nissan">Nissan</option>
+          <option value="Honda">Honda</option>
+          <option value="Peugeot">Peugeot</option>
+          <option value="AstonMartin">Aston Martin</option> 
+          <option value="Bentley">Bentley</option>
+          <option value="Chrysler">Chrysler</option>
+          <option value="Dodge">Dodge</option>
+          <option value="Ferrari">Ferrari</option>
+          <option value="GMC">GMC</option>
+          <option value="Hummer">Hummer</option>
+          <option value="Infiniti">Infiniti</option>
+          <option value="Lamborghini">Lamborghini</option>
+          <option value="Maserati">Maserati</option>
+          <option value="McLaren">McLaren</option>
+          <option value="Mercedes-Benz">Mercedes-Benz</option>
+          <option value="Porsche">Porsche</option>
+          <option value="Rolls-Royce">Rolls-Royce</option>
+          <option value="Tesla">Tesla</option>
+          <option value="Volkswagen">Volkswagen</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="model">Модель</label>
+        <select id="model" required>
+          <option value="">Сначала выберите марку</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="year">Год выпуска</label>
+        <select id="year"></select>
+      </div>
+
+      <div class="form-group">
+        <label for="mileage">Пробег (км)</label>
+        <select id="mileage">
+          <option value="">Не важно</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="price-min">Цена от ($)</label>
+        <input type="number" id="price-min" placeholder="10000">
+      </div>
+
+      <div class="form-group">
+        <label for="price-max">Цена до ($)</label>
+        <input type="number" id="price-max" placeholder="30000">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="client-phone">Ваш WhatsApp/Telegram</label>
+      <input type="text" id="client-phone" required placeholder="+821012345678">
+    </div>
+
+    <div class="form-row">
+  <div class="form-group">
+    <label for="trim">Комплектация (опционально)</label>
+    <input type="text" id="trim" placeholder="Например: Prestige, GT Line">
+  </div>
+</div>
+
+<div class="form-row">
+  <div class="form-group checkbox-group">
+    <label>
+      <input type="checkbox" id="allow-paint">
+      Допустим окрас
+    </label>
+  </div>
+
+  <div class="form-group checkbox-group">
+    <label>
+      <input type="checkbox" id="allow-replacement">
+      Допустима замена
+    </label>
+  </div>
+</div>
+
+    <button type="submit" class="submit-btn">
+      Отправить запрос менеджеру
+    </button>
+  </form>
+</div>
+
+
+
+<footer>
+        <p>© 2023 Eaautogroup. Все права защищены.</p>
+    </footer>
+
+    <!-- Подключение JavaScript файлов -->
+    <!-- 1. Дополнительные функции -->
+    <script src="JS/features/car-selection.js"></script>
+    
+    <!-- 2. Анимации -->
+    <script src="JS/animations.js"></script>
+    </body>
+</html>
